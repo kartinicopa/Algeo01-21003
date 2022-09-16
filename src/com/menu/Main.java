@@ -5,7 +5,7 @@ import com.spl.*;
 import com.determinan.*;
 import com.interpolasi.*;
 import com.regresi.*;
-import com.matriks.*;
+import com.matriksbalikan.*;
 
 public class Main {
 
