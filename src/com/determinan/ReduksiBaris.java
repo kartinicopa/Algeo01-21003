@@ -15,7 +15,7 @@ public class ReduksiBaris {
             System.out.println();
         }
     }
-
+//yhbybyhbybyby
     public static void ans(float matriks[][], int N) {
 
     }
