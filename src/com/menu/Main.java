@@ -1,11 +1,8 @@
 package com.menu;
 
 import java.util.Scanner;
-import com.spl.*;
-import com.determinan.*;
 import com.interpolasi.*;
 import com.regresi.*;
-import com.matriksbalikan.*;
 
 public class Main {
 
@@ -17,7 +14,7 @@ public class Main {
     }
 
     public static void splMenu() {
-        System.out.println("SISTEM PERSAMAAN LINEAR");
+        System.out.println("SISTEM PERSAMAAN LINEAR\n");
         System.out.println("1. Metode eliminasi Gauss");
         System.out.println("2. Metode eliminasi Gauss-Jordan");
         System.out.println("3. Metode matriks balikan");
@@ -28,21 +25,39 @@ public class Main {
 
         int inp = in.nextInt();
 
+        clrscr();
         if (inp == 1) {
-            Gauss.main();
+            Input.spl("METODE ELIMINASI GAUSS");
         } else if (inp == 2) {
-            GaussJordan.main();
+            Input.spl("METODE ELIMINASI GAUSS-JORDAN");
         } else if (inp == 3) {
-            MatriksBalikan.main();
+            Input.spl("METODE MATRIKS BALIKAN");
         } else if (inp == 4) {
-            Cramer.main();
+            Input.spl("KAIDAH CRAMER");
         } else if (inp != 5) {
             splMenu();
         }
     }
 
     public static void determinan() {
+        clrscr();
+        System.out.println("DETERMINAN\n");
+        System.out.println("1. Metode reduksi baris");
+        System.out.println("2. Metode ekspansi kofaktor");
+        System.out.println("3. Keluar");
+        System.out.println("----------------------------");
+        System.out.print("Input : ");
 
+        int inp = in.nextInt();
+
+        clrscr();
+        if (inp == 1) {
+            Input.matriks("METODE REDUKSI BARIS");
+        } else if (inp == 2) {
+            Input.matriks("EKSPANSI KOFAKTOR");
+        } else if (inp != 3) {
+            determinan();
+        }
     }
 
     public static void matriksBalikan() {
@@ -51,7 +66,7 @@ public class Main {
 
     public static void main(String[] args) {
         clrscr();
-        System.out.println("MENU");
+        System.out.println("MENU\n");
         System.out.println("1. Sistem Persamaaan Linier");
         System.out.println("2. Determinan");
         System.out.println("3. Matriks balikan");
