@@ -4,6 +4,7 @@ import java.util.Scanner;
 import com.determinan.*;
 import com.spl.*;
 
+// awkoawkoakoa
 public class Input {
     static Scanner in = new Scanner(System.in);
 
