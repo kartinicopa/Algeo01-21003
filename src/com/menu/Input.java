@@ -33,6 +33,9 @@ public class Input {
         else {
             EkspansiKofaktor.ans(matriks, N);
         }
+
+        in.nextLine();
+
     }
 
 }
