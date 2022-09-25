@@ -2,7 +2,7 @@ package com.menu;
 
 import java.util.Scanner;
 import com.determinan.*;
-import com.spl.*;
+//import com.spl.*;
 
 // awkoawkoakoa
 public class Input {
@@ -28,13 +28,13 @@ public class Input {
             }
         }
 
-        if (x == "METODE REDUKSI BARIS")
+        if (x == "METODE REDUKSI BARIS") {
             ReduksiBaris.ans(matriks, N);
-        else {
+            in.nextLine();
+        } else {
             EkspansiKofaktor.ans(matriks, N);
+            in.nextLine();
         }
-
-        in.nextLine();
 
     }
 
