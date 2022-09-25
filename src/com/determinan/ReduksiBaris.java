@@ -30,7 +30,6 @@ public class ReduksiBaris {
                 m[i][j] -= k * m[idx][j];
             }
         }
-
     }
 
     public static boolean bisaDitukar(int idx) {
