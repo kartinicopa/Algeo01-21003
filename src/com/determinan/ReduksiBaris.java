@@ -1,9 +1,9 @@
 package com.determinan;
 
-//import java.util.Scanner;
+import java.util.Scanner;
 
 public class ReduksiBaris {
-
+    static Scanner in = new Scanner(System.in);
     static float m[][];
     static int N;
 
@@ -75,8 +75,10 @@ public class ReduksiBaris {
         System.out.printf("\nDeterminan = %f\n", det);
 
         System.out.println("\nTekan apa saja untuk keluar!");
-        // Scanner in = new Scanner(System.in);
-        // in.nextLine();
+        Scanner in = new Scanner(System.in);
+        in.nextLine();
+
+        in.close();
     }
 
 }
