@@ -13,6 +13,36 @@ public class Main {
         System.out.flush();
     }
 
+    public static void Inputspl(String x) {
+        clrscr();
+        int N;
+        System.out.println("JENIS INPUT BENTUK SPL");
+        System.out.println();
+        System.out.println("1. Ax = b");
+        System.out.println("2. Augmented");
+        System.out.println("3. Persamaan");
+        System.out.println("4. File (Matriks Augmented");
+        System.out.println("5. Keluar");
+        System.out.println("----------------------------");
+        System.out.print("Input : ");
+        N = in.nextInt();
+
+        clrscr();
+        if (N == 1) {
+            Input.spl(x, 1);
+        } else if (N == 2) {
+            Input.spl(x, 2);
+        } else if (N == 3) {
+            Input.spl(x, 3);
+        } else if (N == 4) {
+            Input.olahFile(x);
+        }
+
+        else if (N != 5) {
+            Inputspl(x);
+        }
+    }
+
     public static void splMenu() {
         System.out.println("SISTEM PERSAMAAN LINEAR\n");
         System.out.println("1. Metode eliminasi Gauss");
@@ -27,13 +57,13 @@ public class Main {
 
         clrscr();
         if (inp == 1) {
-            Input.spl("METODE ELIMINASI GAUSS");
+            Inputspl("METODE ELIMINASI GAUSS");
         } else if (inp == 2) {
-            Input.spl("METODE ELIMINASI GAUSS-JORDAN");
+            Inputspl("METODE ELIMINASI GAUSS-JORDAN");
         } else if (inp == 3) {
-            Input.spl("METODE MATRIKS BALIKAN");
+            Inputspl("METODE MATRIKS BALIKAN");
         } else if (inp == 4) {
-            Input.spl("KAIDAH CRAMER");
+            Inputspl("KAIDAH CRAMER");
         } else if (inp != 5) {
             splMenu();
         }
@@ -64,7 +94,7 @@ public class Main {
 
     }
 
-    public static void main(String[] args) {
+    public static void utama() {
         clrscr();
         System.out.println("MENU\n");
         System.out.println("1. Sistem Persamaaan Linier");
@@ -82,26 +112,31 @@ public class Main {
         clrscr();
         if (inp == 1) {
             splMenu();
-            main(args);
+            utama();
         } else if (inp == 2) {
             determinan();
-            main(args);
+            utama();
         } else if (inp == 3) {
             matriksBalikan();
-            main(args);
+            utama();
         } else if (inp == 4) {
             Polinom.main();
-            main(args);
+            utama();
         } else if (inp == 5) {
             Bicubic.main();
-            main(args);
+            utama();
         } else if (inp == 6) {
             LinearBerganda.main();
-            main(args);
+            utama();
         } else if (inp != 7) {
-            main(args);
+            utama();
+        } else if (inp == 7) {
+            System.exit(0);
         }
+    }
 
+    public static void main(String[] args) {
+        utama();
     }
 
 }

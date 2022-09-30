@@ -78,7 +78,6 @@ public class ReduksiBaris {
         Scanner in = new Scanner(System.in);
         in.nextLine();
 
-        in.close();
     }
 
 }
