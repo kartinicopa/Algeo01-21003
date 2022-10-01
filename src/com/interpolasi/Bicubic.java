@@ -1,5 +1,6 @@
 package com.interpolasi;
 
+import com.invers.inversMat;
 import com.spl.MatriksBalikan;
 
 public class Bicubic {
@@ -19,40 +20,39 @@ public class Bicubic {
     }
     
     public static float[][] bcbmat(float matriks[][], int ord){
-        float float[][] X;
-        X[ord*ord][ord*ord];
-        float alpha[] = new float[ord*ord];
-        float float[][] koef;
-        koef[ord][ord];
+        float X[][] = new float[ord*ord][ord*ord];
+        float alpha[][] = new float[ord*ord][1];
+        float koef[][] = new float[ord][ord];
+        float a[][];
+
+
         X = Bicubic.matX();
-        X = MatriksBalikan.invers(X, ord*ord);
+        X = inversMat.invers(X, ord*ord);
         
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){
-                alpha[4*row+col] = matriks[row][col];
+                alpha[4*row+col][0] = matriks[row][col];
             }
         }
 
-// Selesain SPL, dpt a0-a15
-// a = [a0, a1, a2, .. , a15]
-
+        
+        a = MatriksBalikan.splInv(X, alpha, ord*ord);
 
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){
-                koef[row][col] = a[4*row+col];
+                koef[row][col] = a[4*row+col][0];
             }
         }
         return koef;
     }
 
     public static float pixelVal(float[][] matriks, int x, int y, int ord){
-        float float[][] koef;
-        koef[ord][ord];
+        float koef[][] = new float[ord][ord];
         koef = bcbmat(matriks, ord);
         float pixVal = 0;
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){
-                pixVal += matriks[row][col]*Math.pow(x, row)*Math.pow(y, col);
+                pixVal += koef[row][col]*Math.pow(x, row)*Math.pow(y, col);
             }
         }
         return pixVal;

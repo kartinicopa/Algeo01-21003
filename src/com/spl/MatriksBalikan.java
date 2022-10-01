@@ -1,20 +1,17 @@
 package com.spl;
 
-import com.determinan.EkspansiKofaktor;
-import com.matriksgeneral.Adjoint;
+import com.matriksgeneral.Kali;
+import com.invers.inversMat;
 
 public class MatriksBalikan {
-    public static float[][] invers(float[][] matriks, int ord) {
-        float inv[][] = new float[ord][ord];
-        float det;
+    public static float[][] splInv(float[][] A, float[][] B, int ordA){
+        float[][] solution = new float[ordA][1];
+        float[][] invA = new float[ordA][ordA];
 
-        inv = Adjoint.adjoint(matriks, ord);
-        det = EkspansiKofaktor.ans(matriks, ord);
-        for (int row = 0; row<ord; row++){
-            for (int col = 0; col<ord; col++){
-                inv[row][col] /= det;
-            }
-        }
-        return inv;
+        invA = inversMat.invers(A, ordA);
+        solution = Kali.multiply(invA, B, ordA, ordA, ordA, 1);
+
+        return solution;
+
     }
 }
