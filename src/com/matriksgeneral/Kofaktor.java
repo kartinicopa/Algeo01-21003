@@ -4,15 +4,16 @@ import com.determinan.EkspansiKofaktor;
 
 public class Kofaktor {
     public static float kofaktor(float[][] matrix, int idxrow, int idxcol, int ord){
-        float cfc[][] = new float[ord-1][ord-1];
+        // mengembalikan nilai kofaktor matriks[idxrow][idxcol], rumus : Cij = -1^(i+j)*Mij
+        
+        float minor[][] = new float[ord-1][ord-1];
         
         int row = 0;
-        
-        for (int i = 0; i<ord; i++){   
+        for (int i = 0; i<ord; i++){                // menghasilkan matriks minor, Mij = det(minor(i, j))   
             int col = 0;    
             for (int j = 0; j<ord; j++){
                 if ((i!=idxrow)||(j!=idxcol)){
-                    cfc[row][col] = matrix[i][j];
+                    minor[row][col] = matrix[i][j];
                     col++;
                 }
             }
@@ -20,6 +21,6 @@ public class Kofaktor {
                 row++;
             }
         }
-        return ((float) Math.pow(-1, idxrow+idxcol)*EkspansiKofaktor.ans(cfc, ord-1));
+        return ((float) Math.pow(-1, idxrow+idxcol)*EkspansiKofaktor.ans(minor, ord-1));
     }
 }

@@ -2,11 +2,13 @@ package com.matriksgeneral;
 
 public class Adjoint {
     public static float[][] adjoint(float matriks[][], int ord) {
-        float adj[][] = new float[ord-1][ord-1];
+        // mengembalikan adjoint matriks
+
+        float adj[][] = new float[ord][ord];
 
         for (int i = 0; i<ord; i++){
             for (int j = 0; j<ord; j++){
-                adj[i][j] = (float) Kofaktor.kofaktor(matriks, i, j, ord);
+                adj[i][j] = (float) Kofaktor.kofaktor(matriks, i, j, ord);  //nilai elemen Aij = kofaktor dari Aij
             }
         }
 
