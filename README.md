@@ -1,9 +1,7 @@
-## Getting Started
+## TUGAS BESAR 1 ALJABAR LINIER DAN GEOMETRI
+Sistem Persamaan Linier, Determinan, dan Aplikasinya Semester I Tahun 2022/2023
 
-TUGAS BESAR 1 ALJABAR LINIER DAN GEOMETRI
-
-
-## Folder Structure
+## Deskripsi Program
 
 The workspace contains two folders by default, where:
 
