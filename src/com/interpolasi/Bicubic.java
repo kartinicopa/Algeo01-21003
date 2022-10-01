@@ -46,7 +46,7 @@ public class Bicubic {
         return koef;
     }
 
-    public static float pixelVal(float[][] matriks, int x, int y, int ord){
+    public static float InterpolationVal(float[][] matriks, int x, int y, int ord){
         float koef[][] = new float[ord][ord];
         koef = bcbmat(matriks, ord);
         float pixVal = 0;
