@@ -11,7 +11,7 @@ public class EkspansiKofaktor {
         }else{
             det = 0;
             for (int i=0; i<ord; i++){
-                det += matriks[0][i]*Kofaktor.kofak(matriks, 0, i, ord);
+                det += matriks[0][i]*Kofaktor.kofaktor(matriks, 0, i, ord);
             }
             return det;                                                                                                                                                                                                                                                                  
         }
