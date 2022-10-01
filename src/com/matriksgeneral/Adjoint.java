@@ -6,7 +6,7 @@ public class Adjoint {
 
         for (int i = 0; i<ord; i++){
             for (int j = 0; j<ord; j++){
-                adj[i][j] = (float) Kofaktor.kofak(matriks, i, j, ord);
+                adj[i][j] = (float) Kofaktor.kofaktor(matriks, i, j, ord);
             }
         }
 

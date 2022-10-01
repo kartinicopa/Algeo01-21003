@@ -3,7 +3,7 @@ package com.matriksgeneral;
 import com.determinan.EkspansiKofaktor;
 
 public class Kofaktor {
-    public static float kofak(float[][] matrix, int idxrow, int idxcol, int ord){
+    public static float kofaktor(float[][] matrix, int idxrow, int idxcol, int ord){
         float cfc[][] = new float[ord-1][ord-1];
         
         int row = 0;

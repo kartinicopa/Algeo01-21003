@@ -27,7 +27,7 @@ public class Bicubic {
 
 
         X = Bicubic.matX();
-        X = inversMat.invers(X, ord*ord);
+        X = inversMat.inversmat(X, ord*ord);
         
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){
@@ -36,7 +36,7 @@ public class Bicubic {
         }
 
         
-        a = MatriksBalikan.splInv(X, alpha, ord*ord);
+        a = MatriksBalikan.matriksbalikan(X, alpha, ord*ord);
 
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){

@@ -1,7 +1,7 @@
 package com.matriksgeneral;
 
 public class Kali {
-    public static float[][] multiply(float[][] A, float[][]B, int rowA, int colA, int rowB, int colB){
+    public static float[][] kali(float[][] A, float[][]B, int rowA, int colA, int rowB, int colB){
         float[][] solution = new float[rowA][colB];
 
         for (int row = 0; row<rowA; row++){

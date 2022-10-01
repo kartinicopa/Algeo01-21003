@@ -4,7 +4,7 @@ import com.determinan.EkspansiKofaktor;
 import com.matriksgeneral.Adjoint;
 
 public class inversMat {
-    public static float[][] invers(float[][] matriks, int ord) {
+    public static float[][] inversmat(float[][] matriks, int ord) {
         float inv[][] = new float[ord][ord];
         float det;
 
