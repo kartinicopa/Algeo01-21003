@@ -1,6 +1,5 @@
 package com.interpolasi;
 
-import com.invers.inversMat;
 import com.spl.MatriksBalikan;
 
 public class Bicubic {
@@ -48,7 +47,7 @@ public class Bicubic {
         return koef;                                    //                                a33      a30 ... ... a33
     }
 
-    public static float InterpolationVal(float[][] matriks, int x, int y, int ord){
+    public static float InterpolationVal(float[][] matriks, double d, double e, int ord){
         // mengembalikan nilai f(x, y) berdasarkan matriks input, x, y = [0, 1]
 
         float koef[][] = new float[ord][ord];
@@ -56,13 +55,18 @@ public class Bicubic {
         float pixVal = 0;
         for (int row = 0; row<ord; row++){
             for (int col = 0; col<ord; col++){
-                pixVal += koef[row][col]*Math.pow(x, row)*Math.pow(y, col);
+                pixVal += koef[row][col]*Math.pow(d, row)*Math.pow(e, col);
             }
         }
         return pixVal;
     }
 
-    public static void main() {
-
+    public static void main(String[] args) {
+        float[][] matriks = new float[4][4];
+        for (int i = 1; i < 16; i++){
+            matriks[(i-1)/4][(i-1)%4] = i;
+        }
+        float pixval = InterpolationVal(matriks, 0.5, 0.5, 4);
+        System.out.printf("%f", pixval);
     }
 }

@@ -12,7 +12,7 @@ public class Kofaktor {
         for (int i = 0; i<ord; i++){                // menghasilkan matriks minor, Mij = det(minor(i, j))   
             int col = 0;    
             for (int j = 0; j<ord; j++){
-                if ((i!=idxrow)||(j!=idxcol)){
+                if ((i!=idxrow)&&(j!=idxcol)){
                     minor[row][col] = matrix[i][j];
                     col++;
                 }
