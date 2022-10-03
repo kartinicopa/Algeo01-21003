@@ -143,7 +143,7 @@ public class Input {
         } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
             GaussJordan.main();
         } else if (x == "METODE MATRIKS BALIKAN") {
-            MatriksBalikan.main();
+            MatriksBalikan.ans(a, b, M);
         } else {
             Cramer.ans(a, b, N);
         }
