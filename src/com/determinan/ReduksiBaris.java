@@ -1,6 +1,7 @@
 package com.determinan;
 
 import java.util.Scanner;
+import com.menu.Output;
 
 public class ReduksiBaris {
     static Scanner in = new Scanner(System.in);
@@ -73,7 +74,10 @@ public class ReduksiBaris {
 
         float det = determinan();
         System.out.printf("\nDeterminan = %f\n", det);
-
+        float jwb[][] = new float[1][1];
+        jwb[0][0] = det;
+        System.out.println();
+        Output.displayOutput(jwb, 1, 1, "Determinan");
         System.out.println("\nTekan apa saja untuk keluar!");
         Scanner in = new Scanner(System.in);
         in.nextLine();

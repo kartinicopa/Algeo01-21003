@@ -15,7 +15,9 @@ public class Output {
             fileName += scan.nextLine();
             PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 
-            if (varr == null) {
+            if (varr == "Determinan") {
+                writer.format("Determinan = %.3f\n", mtx[0][0]);
+            } else if (varr == null) {
                 if ((M == 0) && (N == 0)) {
                     writer.println("Matriks kosong.");
                 }

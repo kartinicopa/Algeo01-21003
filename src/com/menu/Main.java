@@ -90,10 +90,6 @@ public class Main {
         }
     }
 
-    public static void matriksBalikan() {
-
-    }
-
     public static void utama() {
         clrscr();
         System.out.println("MENU\n");
@@ -117,13 +113,13 @@ public class Main {
             determinan();
             utama();
         } else if (inp == 3) {
-            matriksBalikan();
+            Input.matriks("MATRIKS BALIKAN");
             utama();
         } else if (inp == 4) {
-            Polinom.main();
+            Input.matriks("MATRIKS BALIKAN");
             utama();
         } else if (inp == 5) {
-            Bicubic.main();
+            Bicubic.main("awko");
             utama();
         } else if (inp == 6) {
             Inputspl("REGRESI");

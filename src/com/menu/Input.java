@@ -2,12 +2,12 @@ package com.menu;
 
 import java.util.Scanner;
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.IOException;
 
 import com.determinan.*;
 import com.spl.*;
 import com.regresi.LinearBerganda;
+import com.invers.inversMat;
+import com.menu.Main;
 
 // awkoawkoakoa
 public class Input {
@@ -27,25 +27,28 @@ public class Input {
             fileName += scan.nextLine();
             File file = new File(fileName);
             Scanner reader = new Scanner(file);
-            System.out.println(fileName);
-
+            // System.out.println(fileName);
             if (reader.next().equals("BARIS")) {
                 M = reader.nextInt();
             } else {
                 System.out.println();
                 System.out.println("Format file eksternal salah.");
+                in.nextLine();
                 return;
             }
+
             if (reader.next().equals("KOLOM")) {
                 N = reader.nextInt();
             } else {
                 System.out.println();
                 System.out.println("Format file eksternal salah.");
+                in.nextLine();
                 return;
             }
 
             try {
                 for (int Brs = 0; Brs < M; Brs++) {
+                    // System.out.println(Brs);
                     for (int Kol = 0; Kol < N; Kol++) {
                         m[Brs][Kol] = reader.nextFloat();
                     }
@@ -53,33 +56,45 @@ public class Input {
             } catch (Exception e) {
                 System.out.println();
                 System.out.println("Format file eksternal salah.");
+                in.nextLine();
                 return;
             }
+
             reader.close();
             System.out.println();
             System.out.println("Berhasil membaca dari file '" + fileName + "'.");
             scan.nextLine();
-            float a[][] = new float[M][N - 1];
-            float b[] = new float[M];
 
-            for (int i = 0; i < M; i++) {
-                for (int j = 0; j < N - 1; j++) {
-                    a[i][j] = m[i][j];
+            if (x == "METODE REDUKSI BARIS") {
+                ReduksiBaris.ans(m, N);
+            } else if (x == "EKSPANSI KOFAKTOR") {
+                EkspansiKofaktor.ans(m, N);
+            } else if (x == "MATRIKS BALIKAN") {
+                inversMat.ans(m, N);
+            } else {
+                float a[][] = new float[M][N - 1];
+                float b[] = new float[M];
+
+                for (int i = 0; i < M; i++) {
+                    for (int j = 0; j < N - 1; j++) {
+                        a[i][j] = m[i][j];
+                    }
+                    b[i] = m[i][N - 1];
                 }
-                b[i] = m[i][N - 1];
+
+                if (x == "METODE ELIMINASI GAUSS") {
+                    Gauss.ans(a, b, M, N - 1);
+                } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
+                    GaussJordan.ans(a, b, M, N - 1);
+                } else if (x == "METODE MATRIKS BALIKAN") {
+                    MatriksBalikan.ans(a, b, N - 1);
+                } else if (x == "KAIDAH CRAMER") {
+                    Cramer.ans(a, b, N - 1);
+                } else if (x == "REGRESI") {
+                    LinearBerganda.ans(a, b, M, N - 1);
+                }
             }
 
-            if (x == "METODE ELIMINASI GAUSS") {
-                Gauss.ans(a, b, M, N - 1);
-            } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
-                GaussJordan.ans(a, b, M, N - 1);
-            } else if (x == "METODE MATRIKS BALIKAN") {
-                MatriksBalikan.main();
-            } else if (x == "KAIDAH CRAMER") {
-                Cramer.ans(a, b, N - 1);
-            } else if (x == "REGRESI") {
-                LinearBerganda.ans(a, b, M, N - 1);
-            }
         } catch (Exception i) {
             System.out.println();
             System.out.println("Tidak dapat membaca dari file eksternal.");
@@ -91,23 +106,41 @@ public class Input {
         int N;
         System.out.println(x);
         System.out.println();
-        System.out.print("Ordo Matriks (N) = ");
-        N = in.nextInt();
-        System.out.println();
 
-        float matriks[][] = new float[N][N];
-        System.out.println("Masukkan elemen matriks :");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                matriks[i][j] = in.nextFloat();
+        System.out.println("Pilih Input :");
+        System.out.println("1. Keyboard");
+        System.out.println("2. File");
+        System.out.println("-------------------");
+        int inp = in.nextInt();
+
+        if (inp == 1) {
+            Main.clrscr();
+            System.out.println(x);
+            System.out.println();
+            System.out.print("Ordo Matriks (N) = ");
+            N = in.nextInt();
+            System.out.println();
+
+            float matriks[][] = new float[N][N];
+            System.out.println("Masukkan elemen matriks :");
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    matriks[i][j] = in.nextFloat();
+                }
             }
+
+            if (x == "METODE REDUKSI BARIS") {
+                ReduksiBaris.ans(matriks, N);
+            } else if (x == "EKSPANSI KOFAKTOR") {
+                EkspansiKofaktor.ans(matriks, N);
+            } else if (x == "MATRIKS BALIKAN") {
+                inversMat.ans(matriks, N);
+            }
+        } else if (inp == 2) {
+            Main.clrscr();
+            olahFile(x);
         }
 
-        if (x == "METODE REDUKSI BARIS") {
-            ReduksiBaris.ans(matriks, N);
-        } else if (x == "EKSPANSI KOFAKTOR") {
-            EkspansiKofaktor.ans(matriks, N);
-        }
     }
 
     public static void spl(String x, int pilihan) {
@@ -186,7 +219,7 @@ public class Input {
         } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
             GaussJordan.ans(a, b, M, N);
         } else if (x == "METODE MATRIKS BALIKAN") {
-            MatriksBalikan.main();
+            MatriksBalikan.ans(a, b, N);
         } else if (x == "KAIDAH CRAMER") {
             Cramer.ans(a, b, N);
         } else if (x == "REGRESI") {

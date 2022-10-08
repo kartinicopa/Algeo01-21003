@@ -8,13 +8,7 @@ public class Cramer {
 
     public static void ans(float a[][], float b[], int N) {
         System.out.println("\n---------------------\n");
-        System.out.println("\nA : ");
-        for (int j = 0; j < N; j++) {
-            for (int k = 0; k < N; k++) {
-                System.out.printf("%f ", a[j][k]);
-            }
-            System.out.println();
-        }
+
         float hasil[][] = new float[N][1];
         float detA = Determinan.main(a, N);
         System.out.printf("Determinan A = %f\n\n", detA);
