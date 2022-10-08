@@ -135,6 +135,8 @@ public class Input {
                 EkspansiKofaktor.ans(matriks, N);
             } else if (x == "MATRIKS BALIKAN") {
                 inversMat.ans(matriks, N);
+            } else if (x == "BICUBIC") {
+
             }
         } else if (inp == 2) {
             Main.clrscr();

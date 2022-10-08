@@ -1,6 +1,8 @@
 package com.interpolasi;
 
 import com.spl.MatriksBalikan;
+import java.util.Scanner;
+import com.menu.Output;
 
 public class Bicubic {
     public static float[][] matX() {
@@ -60,12 +62,19 @@ public class Bicubic {
         return pixVal;
     }
 
-    public static void main(String string) {
-        float[][] matriks = new float[4][4];
-        for (int i = 1; i < 16; i++) {
-            matriks[(i - 1) / 4][(i - 1) % 4] = i;
-        }
-        float pixval = InterpolationVal(matriks, 0.5, 0.5, 4);
-        System.out.printf("%f", pixval);
+    public static void ans(float[][] matriks, int N) {
+        // matriks = new float[4][4];
+        // for (int i = 1; i < 16; i++) {
+        // matriks[(i - 1) / 4][(i - 1) % 4] = i;
+        // }
+        Scanner in = new Scanner(System.in);
+        System.out.println("Masukkan x: ");
+        float x = in.nextFloat();
+        System.out.println("Masukkan y: ");
+        float y = in.nextFloat();
+        float pixval = InterpolationVal(matriks, x, y, 4);
+        System.out.printf("f(%.2f,%.2f) = %f", x, y, pixval);
+        float ans[][] = { { x, y, pixval } };
+        Output.displayOutput(ans, 1, 3, "Bicubic");
     }
 }

@@ -15,7 +15,22 @@ public class Output {
             fileName += scan.nextLine();
             PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 
-            if (varr == "Determinan") {
+            if (varr == "Bicubic") {
+                writer.printf("f(%.2f,%.2f) = %f", mtx[0][0], mtx[0][1], mtx[0][2]);
+            } else
+            if (varr == "Regresi") {
+                writer.print("y = ");
+                for (int i = 0; i < M; i++) {  
+                    if (i != 0)
+                        writer.print("+ ");
+                    writer.format("(%f)x%d ", mtx[i][0], i+1);
+                }  
+                writer.println();
+                for (int i = 0; i < M; i++) {
+                    writer.format("X%d = %f\n", i+1, mtx[i][1]);
+                }
+                writer.format("Hasil = %f", mtx[M - 1][0]);
+            } else if (varr == "Determinan") {
                 writer.format("Determinan = %.3f\n", mtx[0][0]);
             } else if (varr == null) {
                 if ((M == 0) && (N == 0)) {

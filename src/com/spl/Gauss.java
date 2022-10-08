@@ -157,7 +157,7 @@ public class Gauss {
         }
     }
 
-    public static void gauss() {
+    public static void gaussElimination() {
         int currBaseBrs = 0;
         int currBaseKol = 0;
         int currBrs;
@@ -244,7 +244,8 @@ public class Gauss {
             Scanner scan = new Scanner(System.in);
             System.out.println();
             System.out.print("Masukkan nama file eksternal: ");
-            String fileName = scan.nextLine();
+            String fileName = "test\\output\\";
+            fileName += scan.nextLine();
             PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 
             mtx = GaussJordan.gaussJordanElimination(mtx, BrsEff, KolEff);
@@ -333,7 +334,7 @@ public class Gauss {
         for (int i = 0; i < M; i++) {
             mtx[i][N] = b[i];
         }
-        gauss();
+        gaussElimination();
         if ((BrsEff == 0) && (KolEff == 0)) {
             System.out.println();
             System.out.println("\nMatriks kosong.");

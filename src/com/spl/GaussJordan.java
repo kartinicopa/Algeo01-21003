@@ -313,7 +313,8 @@ public class GaussJordan {
             Scanner scan = new Scanner(System.in);
             System.out.println();
             System.out.print("Masukkan nama file eksternal: ");
-            String fileName = scan.nextLine();
+            String fileName = "test\\output\\";
+            fileName += scan.nextLine();
             PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 
             gaussJordanElimination();

@@ -1,12 +1,11 @@
 package com.regresi;
 
-import java.io.*;
 import java.util.*;
 import com.menu.Output;
 import com.spl.GaussJordan;
 
 public class LinearBerganda {
-    static Scanner sc = new Scanner(System.in);
+    // static Scanner sc = new Scanner(System.in);
 
     public static void displayMat(float[][] mat) {
         for (int i = 0; i < mat.length; i++) {
@@ -68,7 +67,7 @@ public class LinearBerganda {
     public static void ans(float[][] mat, float y[], int m, int n) {
         // Menyelesaikan regresi linear berganda
         float[] res = solveRegresi(mat, y);
-
+        float Result[][] = new float[res.length + 1][2];
         // Mengeluarkan persamaan regresi linear berganda
         System.out.println("\nPersamaan regresi linear berganda yang diperoleh");
         System.out.printf("y = %f", res[0]);
@@ -79,24 +78,32 @@ public class LinearBerganda {
                 System.out.printf(" %f x%d\n", res[i], i);
             }
         }
+
         // Menaksir nilai fungsi
         System.out.println("\n\nMenaksir nilai fungsi");
         System.out.printf("Masukkan %d peubah yang akan ditaksir nilai fungsinya\n", res.length - 1);
         float[] taksir = new float[res.length];
+        Scanner sc = new Scanner(System.in);
         for (int i = 0; i < res.length - 1; i++) {
             taksir[i] = sc.nextFloat();
         }
+
+        for (int i = 0; i < res.length; i++) {
+            Result[i][0] = res[i];
+            Result[i][1] = taksir[i];
+        }
+
         float result = res[0];
         for (int i = 0; i < res.length - 1; i++) {
             result += res[i + 1] * taksir[i];
         }
         System.out.printf("Nilai taksirannya adalah %f\n\n", result);
 
-        // Memilih menyimpan di file atau tidak
-        float Result[][] = new float[res.length][1];
-        for (int i = 0; i < res.length; i++) {
-            Result[i][0] = res[i];
-        }
-        Output.displayOutput(Result, m, 1, null);
+        Result[res.length][0] = result;
+        Output.displayOutput(Result, res.length + 1, 2, "Regresi");
+        Scanner in = new Scanner(System.in);
+        System.out.println("\nTekan apa saja untuk keluar!");
+        in.nextLine();
+
     }
 }
