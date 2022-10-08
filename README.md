@@ -1,18 +1,16 @@
-## Getting Started
+## TUGAS BESAR 1 ALJABAR LINIER DAN GEOMETRI
+Sistem Persamaan Linier, Determinan, dan Aplikasinya Semester I Tahun 2022/2023
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Anggota Kelompok Apaya
+1. Bintang Hijriawan Jachja-13521003
+2. Kartini Copa -13521026
+3. M Zulfiansyah Bayu Pratama-13521028
 
-## Folder Structure
+## Deskripsi Program
+Program ini dibuat untuk memenuhi tugas mata kuliah IF2123 Aljabar Linear dan Geometri Semester 1 Tahun 2021/2022. Program ini memiliki fungsionalitas khusus untuk mengolah matriks yaitu:
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Penyelesaian Sistem Persamaan Linear
+- Menghitung Determinan Matriks
+- Mencari Invers Matriks
+- Interpolasi Polinom dan Bikubik
+- Regresi Linear Berganda

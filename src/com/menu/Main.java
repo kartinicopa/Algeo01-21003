@@ -126,7 +126,7 @@ public class Main {
             Bicubic.main();
             utama();
         } else if (inp == 6) {
-            LinearBerganda.main();
+            Inputspl("REGRESI");
             utama();
         } else if (inp != 7) {
             utama();

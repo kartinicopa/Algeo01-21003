@@ -1,0 +1,3 @@
+Sistem persamaan memiliki solusi unik:
+X1 = 1,000 
+X1 = 2,000 

@@ -2,6 +2,7 @@ package com.spl;
 
 import java.util.Scanner;
 import com.determinan.Determinan;
+import com.menu.Output;
 
 public class Cramer {
 
@@ -14,6 +15,7 @@ public class Cramer {
             }
             System.out.println();
         }
+        float hasil[][] = new float[N][1];
         float detA = Determinan.main(a, N);
         System.out.printf("Determinan A = %f\n\n", detA);
         if (detA == 0) {
@@ -47,11 +49,12 @@ public class Cramer {
             }
 
             float detAx = Determinan.main(temp, N);
-
             System.out.printf("Det Ax[%d] = %f\n", i + 1, detAx);
             System.out.printf("x[%d] = %f\n", i + 1, detAx / detA);
             System.out.println();
+            hasil[i][0] = detAx / detA;
         }
+        Output.displayOutput(a, N, 1, "X");
         System.out.println("\nTekan apa saja untuk keluar!");
         Scanner in = new Scanner(System.in);
         in.nextLine();

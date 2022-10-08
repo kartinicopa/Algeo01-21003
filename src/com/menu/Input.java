@@ -1,15 +1,13 @@
 package com.menu;
 
 import java.util.Scanner;
-// import java.io.File;
-// import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 import com.determinan.*;
-import com.spl.Cramer;
-//import com.spl.*;
-import com.spl.Gauss;
-import com.spl.GaussJordan;
-import com.spl.MatriksBalikan;
+import com.spl.*;
+import com.regresi.LinearBerganda;
 
 // awkoawkoakoa
 public class Input {
@@ -17,31 +15,76 @@ public class Input {
     static Scanner in = new Scanner(System.in);
 
     public static void olahFile(String x) {
+        try {
+            System.out.println(x);
+            System.out.println();
+            int M, N;
+            float m[][] = new float[100][100];
+            Scanner scan = new Scanner(System.in);
+            System.out.println();
+            System.out.print("Masukkan nama file eksternal: ");
+            String fileName = "test\\input\\";
+            fileName += scan.nextLine();
+            File file = new File(fileName);
+            Scanner reader = new Scanner(file);
+            System.out.println(fileName);
 
-        // System.out.println(x);
-        // System.out.println();
+            if (reader.next().equals("BARIS")) {
+                M = reader.nextInt();
+            } else {
+                System.out.println();
+                System.out.println("Format file eksternal salah.");
+                return;
+            }
+            if (reader.next().equals("KOLOM")) {
+                N = reader.nextInt();
+            } else {
+                System.out.println();
+                System.out.println("Format file eksternal salah.");
+                return;
+            }
 
-        // System.out.println("-------------------------------------------------");
-        // System.out.println("| Note ! |");
-        // System.out.println("| Format Masukan : <nama_file>.<ekstensi file> |");
-        // System.out.println("| File harus disimpan dalam folder 'test' |");
-        // System.out.println("-------------------------------------------------");
-        // System.out.println("Masukkan nama file : ");
-        // String fileName = in.nextLine();
+            try {
+                for (int Brs = 0; Brs < M; Brs++) {
+                    for (int Kol = 0; Kol < N; Kol++) {
+                        m[Brs][Kol] = reader.nextFloat();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println("Format file eksternal salah.");
+                return;
+            }
+            reader.close();
+            System.out.println();
+            System.out.println("Berhasil membaca dari file '" + fileName + "'.");
+            scan.nextLine();
+            float a[][] = new float[M][N - 1];
+            float b[] = new float[M];
 
-        // try {
-        // int M, N;
-        // File myFile = new File(fileName);
-        // Scanner fileReader = new Scanner(myFile);
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N - 1; j++) {
+                    a[i][j] = m[i][j];
+                }
+                b[i] = m[i][N - 1];
+            }
 
-        // // cetak isi file
-        // while (fileReader.hasNextLine()) {
-        // M += 1;
-        // }
-        // } catch (FileNotFoundException e) {
-        // System.out.println("Terjadi Kesalahan: " + e.getMessage());
-        // e.printStackTrace();
-        // }
+            if (x == "METODE ELIMINASI GAUSS") {
+                Gauss.ans(a, b, M, N - 1);
+            } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
+                GaussJordan.ans(a, b, M, N - 1);
+            } else if (x == "METODE MATRIKS BALIKAN") {
+                MatriksBalikan.main();
+            } else if (x == "KAIDAH CRAMER") {
+                Cramer.ans(a, b, N - 1);
+            } else if (x == "REGRESI") {
+                LinearBerganda.ans(a, b, M, N - 1);
+            }
+        } catch (Exception i) {
+            System.out.println();
+            System.out.println("Tidak dapat membaca dari file eksternal.");
+            in.nextLine();
+        }
     }
 
     public static void matriks(String x) {
@@ -139,13 +182,15 @@ public class Input {
         // }
         System.out.println();
         if (x == "METODE ELIMINASI GAUSS") {
-            Gauss.main();
+            Gauss.ans(a, b, M, N);
         } else if (x == "METODE ELIMINASI GAUSS-JORDAN") {
-            GaussJordan.main();
+            GaussJordan.ans(a, b, M, N);
         } else if (x == "METODE MATRIKS BALIKAN") {
-            MatriksBalikan.ans(a, b, M);
-        } else {
+            MatriksBalikan.main();
+        } else if (x == "KAIDAH CRAMER") {
             Cramer.ans(a, b, N);
+        } else if (x == "REGRESI") {
+            LinearBerganda.ans(a, b, M, N);
         }
 
     }
