@@ -18,7 +18,12 @@ public class MatriksBalikan {
     }
 
     public static void ans(double[][] A, double[] B, int ordA) {
-        double b[][] = new double[ordA][0];
+        double b[][] = new double[ordA][1];
+
+        for (int i = 0; i < ordA; i++) {
+            b[i][0] = B[i];
+        }
+
         double jwb[][] = matriksbalikan(A, b, ordA);
         for (int i = 0; i < ordA; i++) {
             System.out.printf("x[%d] = %f\n", i + 1, jwb[i][0]);

@@ -41,7 +41,7 @@ public class Bicubic {
                 alpha[4 * row + col][0] = matriks[row][col]; // mengubah matriks 4*4 jadi 16*1
             }
         }
-
+        System.out.println("bcb");
         a = MatriksBalikan.matriksbalikan(X, alpha, ord * ord); // Menyelesaikan spl Xa = alpha 16 variabel [a00, a33]
 
         for (int row = 0; row < ord; row++) {
