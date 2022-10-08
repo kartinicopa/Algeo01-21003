@@ -1,7 +1,7 @@
 package com.interpolasi;
 
 import java.util.Scanner;
-import com.spl.MatriksBalikan;
+import com.spl.*;
 import java.util.Scanner;
 import com.menu.Output;
 
@@ -33,7 +33,7 @@ public class Bicubic {
         double alpha[][] = new double[ord * ord][1];
         double koef[][] = new double[ord][ord];
         double a[][];
-        System.out.println("bcb");
+
         X = matX();
 
         for (int row = 0; row < ord; row++) {
@@ -41,9 +41,10 @@ public class Bicubic {
                 alpha[4 * row + col][0] = matriks[row][col]; // mengubah matriks 4*4 jadi 16*1
             }
         }
-        System.out.println("bcb");
-        a = MatriksBalikan.matriksbalikan(X, alpha, ord * ord); // Menyelesaikan spl Xa = alpha 16 variabel [a00, a33]
 
+        // a = MatriksBalikan.matriksbalikan(X, alpha, ord * ord); // Menyelesaikan spl
+        // Xa = alpha 16 variabel [a00, a33]
+        a = Cramer.spl(X, alpha, ord * ord); // Menyelesaikan spl Xa = alpha 16 variabel [a00, a33]
         for (int row = 0; row < ord; row++) {
             for (int col = 0; col < ord; col++) {
                 koef[row][col] = a[4 * row + col][0]; // mengubah matriks 16*1 jadi 4*4 a00 a00 ... ... a03
@@ -59,7 +60,7 @@ public class Bicubic {
         koef = bcbmat(matriks, ord);
         double pixVal = 0;
         for (int row = 0; row < ord; row++) {
-            System.out.println(row);
+
             for (int col = 0; col < ord; col++) {
                 pixVal += koef[row][col] * Math.pow(d, row) * Math.pow(e, col);
             }
@@ -77,6 +78,7 @@ public class Bicubic {
         double x = in.nextDouble();
         System.out.println("Masukkan y: ");
         double y = in.nextDouble();
+        System.out.println();
         double pixval = InterpolationVal(matriks, x, y, 4);
         System.out.printf("f(%.2f,%.2f) = %f", x, y, pixval);
         double ans[][] = { { x, y, pixval } };

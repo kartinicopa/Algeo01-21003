@@ -53,4 +53,33 @@ public class Cramer {
         Scanner in = new Scanner(System.in);
         in.nextLine();
     }
+
+    public static double[][] spl(double a[][], double b[][], int N) {
+
+        double hasil[][] = new double[N][1];
+        double detA = Determinan.main(a, N);
+        if (detA == 0) {
+
+            return hasil;
+        }
+
+        for (int i = 0; i < N; i++) {
+            double temp[][] = new double[N][N];
+            // Copy Matriks
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < N; k++) {
+                    if (j == i) {
+                        temp[i][k] = b[k][0];
+                    } else {
+                        temp[j][k] = a[j][k];
+                    }
+                }
+            }
+
+            double detAx = Determinan.main(temp, N);
+            System.out.println();
+            hasil[i][0] = detAx / detA;
+        }
+        return hasil;
+    }
 }
