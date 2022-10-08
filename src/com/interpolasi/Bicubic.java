@@ -1,8 +1,12 @@
 package com.interpolasi;
 
+import java.util.Scanner;
 import com.spl.MatriksBalikan;
 
 public class Bicubic {
+    
+    static Scanner in = new Scanner(System.in);
+    
     public static float[][] matX() {
         // Mencari matriks X berukuran 16*16 dari rumus x^i*y^j, i dan j adalah baris
         // dan kolom, x dan y adalah kombinasi [-1, 0, 1, 2]
@@ -60,12 +64,20 @@ public class Bicubic {
         return pixVal;
     }
 
-    public static void main(String string) {
-        float[][] matriks = new float[4][4];
-        for (int i = 1; i < 16; i++) {
-            matriks[(i - 1) / 4][(i - 1) % 4] = i;
+    public static void main() {
+        float matriks[][] = new float[4][4];
+        System.out.println("Masukkan matriks 4x4 : ");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                matriks[i][j] = in.nextFloat();
+            }
         }
-        float pixval = InterpolationVal(matriks, 0.5, 0.5, 4);
+        System.out.println("Masukkan nilai x :");
+        float x = in.nextFloat();
+        System.out.println("Masukkan nilai y :");
+        float y = in.nextFloat();
+
+        float pixval = InterpolationVal(matriks, x, y, 4);
         System.out.printf("%f", pixval);
     }
 }
