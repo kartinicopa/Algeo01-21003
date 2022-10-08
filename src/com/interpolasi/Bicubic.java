@@ -1,10 +1,14 @@
 package com.interpolasi;
 
+import java.util.Scanner;
 import com.spl.MatriksBalikan;
 import java.util.Scanner;
 import com.menu.Output;
 
 public class Bicubic {
+
+    static Scanner in = new Scanner(System.in);
+
     public static float[][] matX() {
         // Mencari matriks X berukuran 16*16 dari rumus x^i*y^j, i dan j adalah baris
         // dan kolom, x dan y adalah kombinasi [-1, 0, 1, 2]
@@ -77,4 +81,5 @@ public class Bicubic {
         float ans[][] = { { x, y, pixval } };
         Output.displayOutput(ans, 1, 3, "Bicubic");
     }
+
 }

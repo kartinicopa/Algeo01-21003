@@ -119,7 +119,11 @@ public class Main {
             Input.matriks("MATRIKS BALIKAN");
             utama();
         } else if (inp == 5) {
+<<<<<<< HEAD
             Input.matriks("BIKUBIK");
+=======
+            Bicubic.main();
+>>>>>>> 9071240db8c1f92c465f99b5cb2b40e1d24d16a4
             utama();
         } else if (inp == 6) {
             Inputspl("REGRESI");
