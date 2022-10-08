@@ -3,11 +3,11 @@ package com.matriksgeneral;
 import com.determinan.EkspansiKofaktor;
 
 public class Kofaktor {
-    public static float kofaktor(float[][] matrix, int idxrow, int idxcol, int ord) {
+    public static double kofaktor(double[][] matrix, int idxrow, int idxcol, int ord) {
         // mengembalikan nilai kofaktor matriks[idxrow][idxcol], rumus : Cij =
         // -1^(i+j)*Mij
 
-        float minor[][] = new float[ord - 1][ord - 1];
+        double minor[][] = new double[ord - 1][ord - 1];
 
         int row = 0;
         for (int i = 0; i < ord; i++) { // menghasilkan matriks minor, Mij = det(minor(i, j))
@@ -22,6 +22,6 @@ public class Kofaktor {
                 row++;
             }
         }
-        return ((float) Math.pow(-1, idxrow + idxcol) * EkspansiKofaktor.det(minor, ord - 1));
+        return ((double) Math.pow(-1, idxrow + idxcol) * EkspansiKofaktor.det(minor, ord - 1));
     }
 }

@@ -9,16 +9,16 @@ public class Bicubic {
 
     static Scanner in = new Scanner(System.in);
 
-    public static float[][] matX() {
+    public static double[][] matX() {
         // Mencari matriks X berukuran 16*16 dari rumus x^i*y^j, i dan j adalah baris
         // dan kolom, x dan y adalah kombinasi [-1, 0, 1, 2]
-        float X[][] = new float[16][16];
+        double X[][] = new double[16][16];
 
         int x = -1;
         int y = -1;
         for (int row = 0; row < 16; row++) {
             for (int col = 0; col < 16; col++) {
-                X[row][col] = (float) (Math.pow(x, row) * Math.pow(y, col)); // x^i*y^j
+                X[row][col] = (double) (Math.pow(x, row) * Math.pow(y, col)); // x^i*y^j
             }
             x = ((x + 1) % 3) - ((x + 1) / 3); // loop x dan y dari [-1, 2]
             y = (row / 4) - 1;
@@ -26,15 +26,15 @@ public class Bicubic {
         return X;
     }
 
-    public static float[][] bcbmat(float matriks[][], int ord) {
+    public static double[][] bcbmat(double matriks[][], int ord) {
         // mengembalikan nilai koefisien [a00, a01, a02, .., a33]
 
-        float X[][] = new float[ord * ord][ord * ord];
-        float alpha[][] = new float[ord * ord][1];
-        float koef[][] = new float[ord][ord];
-        float a[][];
-
-        X = Bicubic.matX();
+        double X[][] = new double[ord * ord][ord * ord];
+        double alpha[][] = new double[ord * ord][1];
+        double koef[][] = new double[ord][ord];
+        double a[][];
+        System.out.println("bcb");
+        X = matX();
 
         for (int row = 0; row < ord; row++) {
             for (int col = 0; col < ord; col++) {
@@ -52,13 +52,14 @@ public class Bicubic {
         return koef; // a33 a30 ... ... a33
     }
 
-    public static float InterpolationVal(float[][] matriks, double d, double e, int ord) {
+    public static double InterpolationVal(double[][] matriks, double d, double e, int ord) {
         // mengembalikan nilai f(x, y) berdasarkan matriks input, x, y = [0, 1]
 
-        float koef[][] = new float[ord][ord];
+        double koef[][] = new double[ord][ord];
         koef = bcbmat(matriks, ord);
-        float pixVal = 0;
+        double pixVal = 0;
         for (int row = 0; row < ord; row++) {
+            System.out.println(row);
             for (int col = 0; col < ord; col++) {
                 pixVal += koef[row][col] * Math.pow(d, row) * Math.pow(e, col);
             }
@@ -66,19 +67,19 @@ public class Bicubic {
         return pixVal;
     }
 
-    public static void ans(float[][] matriks, int N) {
-        // matriks = new float[4][4];
+    public static void ans(double[][] matriks, int N) {
+        // matriks = new double[4][4];
         // for (int i = 1; i < 16; i++) {
         // matriks[(i - 1) / 4][(i - 1) % 4] = i;
         // }
         Scanner in = new Scanner(System.in);
         System.out.println("Masukkan x: ");
-        float x = in.nextFloat();
+        double x = in.nextDouble();
         System.out.println("Masukkan y: ");
-        float y = in.nextFloat();
-        float pixval = InterpolationVal(matriks, x, y, 4);
+        double y = in.nextDouble();
+        double pixval = InterpolationVal(matriks, x, y, 4);
         System.out.printf("f(%.2f,%.2f) = %f", x, y, pixval);
-        float ans[][] = { { x, y, pixval } };
+        double ans[][] = { { x, y, pixval } };
         Output.displayOutput(ans, 1, 3, "Bicubic");
     }
 

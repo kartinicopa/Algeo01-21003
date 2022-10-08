@@ -3,9 +3,9 @@ package com.determinan;
 public class Determinan {
     static int N;
 
-    public static void obe(float m[][], int idx) {
+    public static void obe(double m[][], int idx) {
         for (int i = idx + 1; i < N; i++) {
-            float k = m[i][idx] / m[idx][idx];
+            double k = m[i][idx] / m[idx][idx];
             m[i][idx] = 0;
             for (int j = idx + 1; j < N; j++) {
                 m[i][j] -= k * m[idx][j];
@@ -13,11 +13,11 @@ public class Determinan {
         }
     }
 
-    public static boolean bisaDitukar(float m[][], int idx) {
+    public static boolean bisaDitukar(double m[][], int idx) {
         for (int i = idx + 1; i < N; i++) {
             if (m[i][idx] != 0) {
                 // Swap
-                float temp[] = m[i];
+                double temp[] = m[i];
                 m[i] = m[idx];
                 m[idx] = temp;
                 return true;
@@ -26,8 +26,8 @@ public class Determinan {
         return false;
     }
 
-    public static float main(float matriks[][], int n) {
-        float m[][] = new float[n][n];
+    public static double main(double matriks[][], int n) {
+        double m[][] = new double[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 m[i][j] += matriks[i][j];
@@ -49,7 +49,7 @@ public class Determinan {
         // }
         // System.out.println();
         // }
-        float det = 1;
+        double det = 1;
         for (int i = 0; i < N; i++) {
             // Jika diagonal ke-i 0
             if (m[i][i] == 0) {

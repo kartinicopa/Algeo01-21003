@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Output {
 
-    public static void writeToFile(int N, int M, float mtx[][], String varr) {
+    public static void writeToFile(int N, int M, double mtx[][], String varr) {
         try {
             Scanner scan = new Scanner(System.in);
             System.out.println();
@@ -15,19 +15,33 @@ public class Output {
             fileName += scan.nextLine();
             PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 
-            if (varr == "Bicubic") {
+            if (varr == "Polinomial") {
+                boolean first = true;
+                writer.print("y =");
+                for (int i = N - 1; i >= 0; i--) {
+                    if (mtx[0][i] != 0) {
+                        if (first)
+                            first = false;
+                        else if (mtx[0][i] > 0 && !first)
+                            writer.print(" +");
+                        writer.printf(" %f", mtx[0][i]);
+                        if (i != 0)
+                            writer.printf(" x^%d", i);
+
+                    }
+                }
+            } else if (varr == "Bicubic") {
                 writer.printf("f(%.2f,%.2f) = %f", mtx[0][0], mtx[0][1], mtx[0][2]);
-            } else
-            if (varr == "Regresi") {
+            } else if (varr == "Regresi") {
                 writer.print("y = ");
-                for (int i = 0; i < M; i++) {  
+                for (int i = 0; i < M; i++) {
                     if (i != 0)
                         writer.print("+ ");
-                    writer.format("(%f)x%d ", mtx[i][0], i+1);
-                }  
+                    writer.format("(%f)x%d ", mtx[i][0], +1);
+                }
                 writer.println();
                 for (int i = 0; i < M; i++) {
-                    writer.format("X%d = %f\n", i+1, mtx[i][1]);
+                    writer.format("X%d = %f\n", +1, mtx[i][1]);
                 }
                 writer.format("Hasil = %f", mtx[M - 1][0]);
             } else if (varr == "Determinan") {
@@ -79,7 +93,7 @@ public class Output {
         }
     }
 
-    public static void displayOutput(float[][] matriks, int M, int N, String varr) {
+    public static void displayOutput(double[][] matriks, int M, int N, String varr) {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nApakah ingin menyimpan output ke dalam file?");
         System.out.println("1. Ya");

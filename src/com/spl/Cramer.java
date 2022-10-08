@@ -6,11 +6,11 @@ import com.menu.Output;
 
 public class Cramer {
 
-    public static void ans(float a[][], float b[], int N) {
+    public static void ans(double a[][], double b[], int N) {
         System.out.println("\n---------------------\n");
 
-        float hasil[][] = new float[N][1];
-        float detA = Determinan.main(a, N);
+        double hasil[][] = new double[N][1];
+        double detA = Determinan.main(a, N);
         System.out.printf("Determinan A = %f\n\n", detA);
         if (detA == 0) {
             System.out.println("Persamaan ini tidak memiliki solusi!");
@@ -22,7 +22,7 @@ public class Cramer {
 
         for (int i = 0; i < N; i++) {
             System.out.println("-----------------");
-            float temp[][] = new float[N][N];
+            double temp[][] = new double[N][N];
             // Copy Matriks
             for (int j = 0; j < N; j++) {
                 for (int k = 0; k < N; k++) {
@@ -42,7 +42,7 @@ public class Cramer {
                 System.out.println();
             }
 
-            float detAx = Determinan.main(temp, N);
+            double detAx = Determinan.main(temp, N);
             System.out.printf("Det Ax[%d] = %f\n", i + 1, detAx);
             System.out.printf("x[%d] = %f\n", i + 1, detAx / detA);
             System.out.println();

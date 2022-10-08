@@ -116,11 +116,11 @@ public class Main {
             Input.matriks("MATRIKS BALIKAN");
             utama();
         } else if (inp == 4) {
-            Input.matriks("MATRIKS BALIKAN");
+            Inputspl("POLINOMIAL");
             utama();
         } else if (inp == 5) {
 
-            Input.matriks("BIKUBIK");
+            Input.matriks("BICUBIC");
 
             utama();
         } else if (inp == 6) {

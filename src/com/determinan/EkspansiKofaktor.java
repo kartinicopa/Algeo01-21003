@@ -4,8 +4,8 @@ import com.matriksgeneral.Kofaktor;
 import com.menu.Output;
 
 public class EkspansiKofaktor {
-    public static float det(float matriks[][], int ord) {
-        float det;
+    public static double det(double matriks[][], int ord) {
+        double det;
 
         if (ord == 1) {
             return matriks[0][0];
@@ -19,11 +19,11 @@ public class EkspansiKofaktor {
 
     }
 
-    public static void ans(float matriks[][], int ord) {
-        float ans = det(matriks, ord);
+    public static void ans(double matriks[][], int ord) {
+        double ans = det(matriks, ord);
         System.out.printf("Determinan = %f", ans);
         System.out.println();
-        float jwb[][] = new float[1][1];
+        double jwb[][] = new double[1][1];
         jwb[0][0] = ans;
         Output.displayOutput(jwb, 1, 1, "Determinan");
     }

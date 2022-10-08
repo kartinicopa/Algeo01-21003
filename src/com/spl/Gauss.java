@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 
 public class Gauss {
-    static float[][] mtx = new float[100][100];
+    static double[][] mtx = new double[100][100];
     static int BrsEff;
     static int KolEff;
 
@@ -46,7 +46,7 @@ public class Gauss {
     }
 
     private static void swapBrs(int Brs1Idx, int Brs2Idx) {
-        float[] tempBrs = new float[KolEff];
+        double[] tempBrs = new double[KolEff];
         for (int j = 0; j < KolEff; j++) {
             tempBrs[j] = mtx[Brs1Idx][j];
         }
@@ -64,13 +64,13 @@ public class Gauss {
         swapBrs(currBrs, pivotBrs);
     }
 
-    private static void bagiBrs(int i, float Bagi) {
+    private static void bagiBrs(int i, double Bagi) {
         for (int j = 0; j < KolEff; j++) {
             mtx[i][j] /= Bagi;
         }
     }
 
-    private static void kurangBrs(int i, int j, float Kali) {
+    private static void kurangBrs(int i, int j, double Kali) {
         for (int k = 0; k < KolEff; k++) {
             mtx[i][k] -= (mtx[j][k] * Kali);
         }
@@ -170,10 +170,10 @@ public class Gauss {
             if (currBaseKol > KolEff - 2) {
                 break;
             }
-            float pivotBagi = mtx[currBaseBrs][currBaseKol];
+            double pivotBagi = mtx[currBaseBrs][currBaseKol];
             bagiBrs(currBaseBrs, pivotBagi);
             for (currBrs = currBaseBrs + 1; currBrs < BrsEff; currBrs++) {
-                float multiplier = mtx[currBrs][currBaseKol];
+                double multiplier = mtx[currBrs][currBaseKol];
                 kurangBrs(currBrs, currBaseBrs, multiplier);
             }
             currBaseKol++;
@@ -322,7 +322,7 @@ public class Gauss {
         }
     }
 
-    public static void ans(float a[][], float b[], int M, int N) {
+    public static void ans(double a[][], double b[], int M, int N) {
         BrsEff = M;
         KolEff = N + 1;
 

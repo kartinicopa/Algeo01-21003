@@ -5,7 +5,7 @@ import com.menu.Output;
 
 public class ReduksiBaris {
     static Scanner in = new Scanner(System.in);
-    static float m[][];
+    static double m[][];
     static int N;
 
     public static void displayMatriks(int N) {
@@ -25,7 +25,7 @@ public class ReduksiBaris {
 
     public static void obe(int idx) {
         for (int i = idx + 1; i < N; i++) {
-            float k = m[i][idx] / m[idx][idx];
+            double k = m[i][idx] / m[idx][idx];
             m[i][idx] = 0;
             for (int j = idx + 1; j < N; j++) {
                 m[i][j] -= k * m[idx][j];
@@ -37,7 +37,7 @@ public class ReduksiBaris {
         for (int i = idx + 1; i < N; i++) {
             if (m[i][idx] != 0) {
                 // Swap
-                float temp[] = m[i];
+                double temp[] = m[i];
                 m[i] = m[idx];
                 m[idx] = temp;
                 return true;
@@ -46,9 +46,9 @@ public class ReduksiBaris {
         return false;
     }
 
-    public static float determinan() {
+    public static double determinan() {
         System.out.println();
-        float det = 1;
+        double det = 1;
         for (int i = 0; i < N; i++) {
             garis();
 
@@ -68,13 +68,13 @@ public class ReduksiBaris {
         return det;
     }
 
-    public static void ans(float matriks[][], int n) {
+    public static void ans(double matriks[][], int n) {
         N = n;
         m = matriks;
 
-        float det = determinan();
+        double det = determinan();
         System.out.printf("\nDeterminan = %f\n", det);
-        float jwb[][] = new float[1][1];
+        double jwb[][] = new double[1][1];
         jwb[0][0] = det;
         System.out.println();
         Output.displayOutput(jwb, 1, 1, "Determinan");

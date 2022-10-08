@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.io.File;
 
 import com.determinan.*;
+import com.interpolasi.Bicubic;
+import com.interpolasi.Polinom;
 import com.spl.*;
 import com.regresi.LinearBerganda;
 import com.invers.inversMat;
@@ -19,7 +21,7 @@ public class Input {
             System.out.println(x);
             System.out.println();
             int M, N;
-            float m[][] = new float[100][100];
+            double m[][] = new double[100][100];
             Scanner scan = new Scanner(System.in);
             System.out.println();
             System.out.print("Masukkan nama file eksternal: ");
@@ -50,7 +52,7 @@ public class Input {
                 for (int Brs = 0; Brs < M; Brs++) {
                     // System.out.println(Brs);
                     for (int Kol = 0; Kol < N; Kol++) {
-                        m[Brs][Kol] = reader.nextFloat();
+                        m[Brs][Kol] = reader.nextDouble();
                     }
                 }
             } catch (Exception e) {
@@ -71,9 +73,14 @@ public class Input {
                 EkspansiKofaktor.ans(m, N);
             } else if (x == "MATRIKS BALIKAN") {
                 inversMat.ans(m, N);
-            } else {
-                float a[][] = new float[M][N - 1];
-                float b[] = new float[M];
+            } else if (x == "BICUBIC") {
+                Bicubic.ans(m, N);
+            } else if (x == "POLINOMIAL") {
+                Polinom.ans(m, N);
+            }
+            {
+                double a[][] = new double[M][N - 1];
+                double b[] = new double[M];
 
                 for (int i = 0; i < M; i++) {
                     for (int j = 0; j < N - 1; j++) {
@@ -121,11 +128,11 @@ public class Input {
             N = in.nextInt();
             System.out.println();
 
-            float matriks[][] = new float[N][N];
+            double matriks[][] = new double[N][N];
             System.out.println("Masukkan elemen matriks :");
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
-                    matriks[i][j] = in.nextFloat();
+                    matriks[i][j] = in.nextDouble();
                 }
             }
 
@@ -136,7 +143,7 @@ public class Input {
             } else if (x == "MATRIKS BALIKAN") {
                 inversMat.ans(matriks, N);
             } else if (x == "BICUBIC") {
-
+                Bicubic.ans(matriks, N);
             }
         } else if (inp == 2) {
             Main.clrscr();
@@ -151,6 +158,11 @@ public class Input {
         System.out.println();
 
         // Jika kaidah cramer, yang diminta input hanyalah N
+        if (x == "POLINOMIAL") {
+            System.out.print("Banyaknya Variabel");
+            M = in.nextInt();
+            N = 2;
+        }
         if (x == "KAIDAH CRAMER") {
             System.out.print("Banyaknya Persamaan dan Variabel (n) = ");
             N = in.nextInt();
@@ -162,8 +174,8 @@ public class Input {
             N = in.nextInt();
         }
 
-        float a[][] = new float[M][N];
-        float b[] = new float[M];
+        double a[][] = new double[M][N];
+        double b[] = new double[M];
 
         // Kondisi Input Ax = B
         if (pilihan == 1) {
@@ -171,12 +183,12 @@ public class Input {
             System.out.println("Masukkan matriks A : ");
             for (int i = 0; i < M; i++) {
                 for (int j = 0; j < N; j++) {
-                    a[i][j] = in.nextFloat();
+                    a[i][j] = in.nextDouble();
                 }
             }
             System.out.println("Masukkan matriks B : ");
             for (int i = 0; i < M; i++) {
-                b[i] = in.nextFloat();
+                b[i] = in.nextDouble();
             }
         } else
 
@@ -186,9 +198,9 @@ public class Input {
             for (int i = 0; i < M; i++) {
                 for (int j = 0; j <= N; j++) {
                     if (j == N) {
-                        b[i] = in.nextFloat();
+                        b[i] = in.nextDouble();
                     } else {
-                        a[i][j] = in.nextFloat();
+                        a[i][j] = in.nextDouble();
                     }
                 }
             }
@@ -201,10 +213,10 @@ public class Input {
                 System.out.println("----------------");
                 for (int j = 0; j < N; j++) {
                     System.out.printf("x[%d] = ", j + 1);
-                    a[i][j] = in.nextFloat();
+                    a[i][j] = in.nextDouble();
                 }
                 System.out.printf("Solusi = ");
-                b[i] = in.nextFloat();
+                b[i] = in.nextDouble();
             }
         }
 
@@ -226,6 +238,14 @@ public class Input {
             Cramer.ans(a, b, N);
         } else if (x == "REGRESI") {
             LinearBerganda.ans(a, b, M, N);
+        } else if (x == "POLINOMIAL") {
+            double m[][] = new double[M][N + 1];
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++)
+                    m[i][j] = a[i][j];
+                m[i][N] = b[i];
+            }
+            Polinom.ans(m, M);
         }
 
     }
