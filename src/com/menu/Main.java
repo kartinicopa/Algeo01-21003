@@ -3,7 +3,6 @@ package com.menu;
 import java.util.Scanner;
 import com.interpolasi.*;
 import com.regresi.*;
-import com.spl.SPL;
 
 public class Main {
 

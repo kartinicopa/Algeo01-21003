@@ -3,7 +3,7 @@ package com.regresi;
 import java.io.*;
 import java.util.*;
 import com.menu.Output;
-import com.spl.EliminasiGaussJordan;
+import com.spl.GaussJordan;
 
 public class LinearBerganda {
     static Scanner sc = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class LinearBerganda {
         displayMat(spl);
 
         // Menyelesaikan matrix SPL dengan metode gauss jordan
-        float[][] res = EliminasiGaussJordan.gaussJordanElimination(spl, col + 1, col + 2);
+        float[][] res = GaussJordan.gaussJordanElimination(spl, col + 1, col + 2);
 
         // Mengambil nilai y saja
         float[] b = new float[col + 1];
@@ -97,6 +97,6 @@ public class LinearBerganda {
         for (int i = 0; i < res.length; i++) {
             Result[i][0] = res[i];
         }
-        Output.displayOutput(Result, m, 1);
+        Output.displayOutput(Result, m, 1, null);
     }
 }
