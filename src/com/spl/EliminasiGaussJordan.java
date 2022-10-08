@@ -5,12 +5,12 @@ import java.io.PrintWriter;
 import java.io.IOException;
 
 // EliminasiGaussJordan Class
-public class GaussJordan {
+public class EliminasiGaussJordan {
     static float[][] mtx = new float[100][100];
     static int BrsEff;
     static int KolEff;
 
-    public GaussJordan() {
+    public EliminasiGaussJordan() {
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
                 mtx[i][j] = 0;
@@ -220,7 +220,25 @@ public class GaussJordan {
         return mtx;
     }
 
-    public static void writeToFile() {
+    public static void write() {
+        if ((BrsEff == 0) && (KolEff == 0)) {
+            System.out.println();
+            System.out.println("Matriks kosong.");
+        }
+        System.out.println();
+        for (int i = 0; i < BrsEff; i++) {
+            for (int j = 0; j < KolEff; j++) {
+                System.out.format("%.3f", mtx[i][j]);
+                System.out.print(" ");
+                if (j == (KolEff - 2)) {
+                    System.out.print("| ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public void writeToFile() {
         try {
             Scanner scan = new Scanner(System.in);
             System.out.println();
@@ -250,9 +268,13 @@ public class GaussJordan {
         }
     }
 
-    public static void writeGaussJordanSolution() {
+    public void writeGaussJordan() {
         gaussJordanElimination();
+        write();
+    }
 
+    public void writeGaussJordanSolution() {
+        gaussJordanElimination();
         hapusBarisNol();
         if (noSolusi()) {
             System.out.println();
@@ -318,19 +340,7 @@ public class GaussJordan {
 
             gaussJordanElimination();
             hapusBarisNol();
-            if ((BrsEff == 0) && (KolEff == 0)) {
-                writer.println("Matriks kosong.");
-            }
-            for (int i = 0; i < BrsEff; i++) {
-                for (int j = 0; j < KolEff; j++) {
-                    writer.format("%.3f", mtx[i][j]);
-                    writer.print(" ");
-                    if (j == (KolEff - 2)) {
-                        writer.print("| ");
-                    }
-                }
-                writer.print("\n");
-            }
+
             if (noSolusi()) {
                 writer.println("Sistem persamaan tidak memiliki solusi.");
             } else if (solusiBanyak()) {
@@ -390,49 +400,4 @@ public class GaussJordan {
         }
     }
 
-    public static void ans(float a[][], float b[], int M, int N) {
-        BrsEff = M;
-        KolEff = N + 1;
-        System.out.println("El");
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                mtx[i][j] = a[i][j];
-            }
-        }
-        for (int i = 0; i < M; i++) {
-            mtx[i][N] = b[i];
-        }
-
-        writeGaussJordanSolution();
-        if ((BrsEff == 0) && (KolEff == 0)) {
-            System.out.println();
-            System.out.println("\nMatriks kosong.");
-        }
-        System.out.println();
-        for (int i = 0; i < BrsEff; i++) {
-            for (int j = 0; j < KolEff; j++) {
-                System.out.format("%.3f", mtx[i][j]);
-                System.out.print(" ");
-                if (j == (KolEff - 2)) {
-                    System.out.print("| ");
-                }
-            }
-            System.out.print("\n");
-        }
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nApakah ingin menyimpan output ke dalam file?");
-        System.out.println("1. Ya");
-        System.out.println("2. Tidak");
-        System.out.println("------------------");
-        int pil = scan.nextInt();
-
-        if (pil == 1) {
-            writeGaussJordanSolutionToFile();
-        }
-
-        System.out.println("\nTekan apa saja untuk keluar!");
-        Scanner in = new Scanner(System.in);
-        in.nextLine();
-    }
 }
